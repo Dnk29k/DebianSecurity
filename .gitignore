@@ -1,0 +1,4 @@
+.secrets
+*.log
+venv_pentest/
+target
