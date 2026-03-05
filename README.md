@@ -1,6 +1,11 @@
 # 🛠️ Arquitectura "Phoenix" - Debian Pentest Environment
 > **High-Performance Security OS Deployment**
 
+![OS](https://img.shields.io/badge/OS-Debian%2012-red?logo=debian&logoColor=white)
+![WM](https://img.shields.io/badge/WM-bspwm-blue?logo=arch-linux&logoColor=white)
+![Shell](https://img.shields.io/badge/Shell-Zsh-orange?logo=gnuterminal&logoColor=white)
+![Tools](https://img.shields.io/badge/Tools-Cybersecurity-brightgreen?logo=kali-linux&logoColor=white)
+![Status](https://img.shields.io/badge/Status-Optimized-success)
 ![Phoenix Banner](assets/banner.png) ## 📋 Contexto de Alto Rendimiento
 Este repositorio contiene la configuración integral (Dotfiles + Arsenal) para una estación de trabajo de ciberseguridad basada en **Debian 12 "Naked"**. Optimizada específicamente para entornos virtualizados de alto rendimiento.
 
