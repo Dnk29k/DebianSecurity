@@ -115,3 +115,8 @@ function cleartarget(){
 
 # Created by `pipx` on 2026-03-04 21:21:32
 export PATH="$PATH:/home/dnk29/.local/bin"
+
+# --- Auto-startx en TTY1 ---
+if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
+    exec startx
+fi
