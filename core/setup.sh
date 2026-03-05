@@ -29,3 +29,26 @@ if [ ! -f "/usr/share/wordlists/rockyou.txt" ]; then
 fi
 
 echo -e "\e[1;34m[+] Entorno Phoenix desplegado al 100%.\e[0m"
+
+# --- 5. Instalación de Arsenal Avanzado (VENV/PIPX) ---
+echo -e "\e[1;34m[*] Instalando Arsenal de Hacking Avanzado...\e[0m"
+
+# Herramientas de Red y Active Directory
+pipx install impacket --force
+pipx install certipy-ad
+pipx install bloodhound
+
+# Herramientas de Transferencia y Reconocimiento
+pipx install updog
+pipx install git+https://github.com/Pennyw0rth/NetExec --force
+
+# --- 6. Despliegue de Fuentes (Fix Visual Polybar) ---
+echo -e "\e[1;34m[*] Instalando fuentes del sistema...\e[0m"
+mkdir -p "$HOME/.local/share/fonts"
+cp -r "$REPO_ROOT/configs/polybar/fonts/"* "$HOME/.local/share/fonts/" 2>/dev/null
+fc-cache -f -v
+
+# --- 7. Wallpaper Setup ---
+echo -e "\e[1;34m[*] Configurando entorno visual...\e[0m"
+mkdir -p "$HOME/Pictures/Wallpapers"
+cp "$REPO_ROOT/assets/wallpaper.jpg" "$HOME/Pictures/Wallpapers/" 2>/dev/null

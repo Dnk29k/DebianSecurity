@@ -20,3 +20,20 @@ cp ~/.p10k.zsh "$REPO_DIR/configs/p10k.zsh"
 cp ~/.config/bspwm/scripts/*.sh "$REPO_DIR/scripts/"
 
 echo -e "\e[1;34m[+] Sincronización completada. Archivos listos en $REPO_DIR\e[0m"
+
+sxhkd &
+python3 $HOME/.config/polybar/launch.sh &
+feh --bg-fill $HOME/DebianSecurity/assets/wallpaper.jpg &
+exec bspwm
+
+mkdir -p "$REPO_DIR/assets"
+
+cp ~/.config/bspwm/wallpaper.jpg "$REPO_DIR/assets/" 2>/dev/null
+
+cp ~/.xinitrc "$REPO_DIR/configs/xinitrc" 2>/dev/null
+
+# 4. Capturar Assets Visuales
+echo -e " > Actualizando Assets (Wallpapers/Fuentes)..."
+mkdir -p "$REPO_DIR/assets"
+
+cp /home/dnk29/Fondos/Fondo5.jpg "$REPO_DIR/assets/" 2>/dev/null

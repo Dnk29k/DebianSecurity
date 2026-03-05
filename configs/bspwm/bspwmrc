@@ -24,7 +24,7 @@ bspc rule -a Screenkey manage=off
 xclip &
 
 # Fondo de pantalla
-/usr/bin/feh --bg-fill $HOME/Dnk29/Fondos/Fondo.jpg &
+/usr/bin/feh --bg-fill $HOME/DebianSecurity/assets/wallpaper.jpg &
 
 # Polybar
 ~/.config/polybar/./launch.sh &
