@@ -10,6 +10,15 @@ echo -e "\e[1;34m[*] Iniciando despliegue de DebianSecurity...\e[0m"
 sudo apt update
 sudo apt install -y git python3-pip python3-venv pipx bat lsd xclip feh bspwm sxhkd polybar picom kitty
 
+# --- 1.1 Soporte Nativo para Kitty (Evita letras duplicadas en SSH) ---
+echo -e "\e[1;34m[*] Configurando base de datos de terminal para Kitty...\e[0m"
+mkdir -p "$HOME/.terminfo/x"
+# Si estamos en el MacBook, el archivo ya existe. Si estamos en una MV limpia, lo intentamos copiar.
+if [ -f "/usr/share/terminfo/x/xterm-kitty" ]; then
+    cp /usr/share/terminfo/x/xterm-kitty "$HOME/.terminfo/x/"
+    echo -e "\e[1;32m[+] Terminfo de Kitty configurado localmente.\e[0m"
+fi
+
 # 2. Escudo contra errores de Python (NetExec & Impacket)
 echo -e "\e[1;32m[*] Instalando Arsenal de Red (nxc, updog)...\e[0m"
 pipx install git+https://github.com/Pennyw0rth/NetExec --force
@@ -52,3 +61,14 @@ fc-cache -f -v
 echo -e "\e[1;34m[*] Configurando entorno visual...\e[0m"
 mkdir -p "$HOME/Pictures/Wallpapers"
 cp "$REPO_ROOT/assets/wallpaper.jpg" "$HOME/Pictures/Wallpapers/" 2>/dev/null
+
+# --- 8. Despliegue de Dotfiles (ZSH & Powerlevel10k) ---
+echo -e "\e[1;34m[*] Desplegando configuraciones de ZSH y P10k...\e[0m"
+cp "$REPO_ROOT/.zshrc" "$HOME/.zshrc"
+cp "$REPO_ROOT/.p10k.zsh" "$HOME/.p10k.zsh"
+
+# Cambiar shell a ZSH si no lo es ya
+if [ "$SHELL" != "$(which zsh)" ]; then
+    echo -e "\e[1;33m[*] Cambiando shell por defecto a ZSH (requiere contraseña)...\e[0m"
+    chsh -s "$(which zsh)"
+fi
