@@ -68,6 +68,6 @@ echo -e "\e[1;34m[*] Desplegando configuraciones desde configs/zsh/...\e[0m"
 cp "$REPO_ROOT/configs/zsh/.zshrc" "$HOME/.zshrc"
 cp "$REPO_ROOT/configs/zsh/.p10k.zsh" "$HOME/.p10k.zsh"
 
-# El fix de Kitty sigue siendo necesario
+# El fix de Kitty
 mkdir -p "$HOME/.terminfo/x"
 [ -f "/usr/share/terminfo/x/xterm-kitty" ] && cp /usr/share/terminfo/x/xterm-kitty "$HOME/.terminfo/x/"
