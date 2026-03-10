@@ -56,12 +56,15 @@ alias myip='hostname -I | awk "{print \$1}"' # Tu IP en la red local
 alias myhtb='ip addr show tun0 | grep "inet " | awk "{print \$2}" | cut -d "/" -f 1 2>/dev/null' # Tu IP de HTB
 
 # --- Pentesting ---
-alias nscan='sudo nmap -sS -sV -sC -p- --min-rate 5000' # Escaneo rápido total
+alias nscan='sudo nmap -p- --open -sS --min-rate 5000 -vvv -n -Pn'
 alias lpeas='~/tools/privesc/linpeas.sh'
 alias rshell='rlwrap nc -lvnp' # Para recibir shells mucho mejor
 
 # Impacket
 alias impacket='cd ~/tools/impacket/examples'
+
+# Obsidian
+alias obsidian='~/.local/bin/obsidian.AppImage'
 
 # History
 HISTFILE=~/.zsh_history

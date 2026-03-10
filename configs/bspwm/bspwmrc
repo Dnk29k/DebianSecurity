@@ -1,33 +1,37 @@
 #! /bin/sh
 
+# 1. Atajos de teclado (Sxhkd)
 pgrep -x sxhkd > /dev/null || sxhkd &
 
+# 2. Configuración de monitores y gaps
 bspc monitor -d I II III IV V VI VII VIII IX X
-
 bspc config border_width         2
 bspc config window_gap          12
-
 bspc config split_ratio          0.52
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 
+# 3. Reglas de ventanas
 bspc rule -a Gimp desktop='^8' state=floating follow=on
 bspc rule -a Chromium desktop='^2'
 bspc rule -a mplayer2 state=floating
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 
-# Agente de VMware para el portapapeles y resolución (MUY IMPORTANTE)
-/usr/bin/vmware-user-suid-wrapper &
+# --- ARRANQUE DE APLICACIONES ---
 
-# Gestor de portapapeles para evitar que se pierda al cerrar ventanas
-xclip &
+# Resolución y portapapeles de VMware (Fundamental que sea lo primero)
+/usr/bin/vmware-user-suid-wrapper &
+sleep 1 # Esperamos a que la resolución se estabilice
 
 # Fondo de pantalla
-/usr/bin/feh --bg-fill $HOME/DebianSecurity/assets/wallpaper.jpg &
+(sleep 2 && feh --bg-fill $HOME/DebianSecurity/assets/wallpaper.jpg) &
 
-# Polybar
-~/.config/polybar/./launch.sh &
+# Polybar (con un pequeño delay para que no choque con el cambio de resolución)
+(sleep 3 && ~/.config/polybar/./launch.sh) &
 
-# Picom
-picom &
+# Picom Optimizado para MV (Usando xrender para evitar el lag)
+picom --backend xrender --no-fading-openclose &
+
+# Notas
+obsidian &
