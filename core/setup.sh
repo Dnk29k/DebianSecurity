@@ -62,13 +62,12 @@ echo -e "\e[1;34m[*] Configurando entorno visual...\e[0m"
 mkdir -p "$HOME/Pictures/Wallpapers"
 cp "$REPO_ROOT/assets/wallpaper.jpg" "$HOME/Pictures/Wallpapers/" 2>/dev/null
 
-# --- 8. Despliegue de Dotfiles (ZSH & Powerlevel10k) ---
-echo -e "\e[1;34m[*] Desplegando configuraciones de ZSH y P10k...\e[0m"
-cp "$REPO_ROOT/.zshrc" "$HOME/.zshrc"
-cp "$REPO_ROOT/.p10k.zsh" "$HOME/.p10k.zsh"
+# --- 8. Vinculación de Dotfiles (Nueva Estructura) ---
+echo -e "\e[1;34m[*] Desplegando configuraciones desde configs/zsh/...\e[0m"
 
-# Cambiar shell a ZSH si no lo es ya
-if [ "$SHELL" != "$(which zsh)" ]; then
-    echo -e "\e[1;33m[*] Cambiando shell por defecto a ZSH (requiere contraseña)...\e[0m"
-    chsh -s "$(which zsh)"
-fi
+cp "$REPO_ROOT/configs/zsh/.zshrc" "$HOME/.zshrc"
+cp "$REPO_ROOT/configs/zsh/.p10k.zsh" "$HOME/.p10k.zsh"
+
+# El fix de Kitty sigue siendo necesario
+mkdir -p "$HOME/.terminfo/x"
+[ -f "/usr/share/terminfo/x/xterm-kitty" ] && cp /usr/share/terminfo/x/xterm-kitty "$HOME/.terminfo/x/"
